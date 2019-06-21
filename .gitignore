@@ -6,6 +6,9 @@
 .idea/**/codeStyles
 .idea/**/shelf
 
+# Sensitive or high-churn files
+.idea/**/uiDesigner.xml
+
 # File-based project format
 *.iws
 
@@ -27,3 +30,5 @@ out/
 .idea/modules
 *.iml
 *.ipr
+
+.idea/compiler.xml
