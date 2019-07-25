@@ -6,21 +6,20 @@ import discreteeventsystems.Alphabet;
 import discreteeventsystems.UniqueList;
 import discreteeventsystems.automaton.transition.Transition;
 import discreteeventsystems.automaton.transition.TransitionTable;
-import discreteeventsystems.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.Collection;
-import lombok.NonNull;
+import java.util.Objects;
 import lombok.Setter;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Automata {
 
-	private final            Alphabet               alphabet;
-	private                  UniqueList<State>      states;
-	private                  UniqueList<Transition> transitions;
-	@NonNull @Setter private State                  initial;
-	private                  UniqueList<State>      acceptStates;
-	private                  TransitionTable        transitionTable;
+	private         Alphabet               alphabet;
+	private         UniqueList<State>      states;
+	private         UniqueList<Transition> transitions;
+	@Setter private State                  initial;
+	private         UniqueList<State>      acceptStates;
+	private         TransitionTable        transitionTable;
 
 	public Automata() {
 		alphabet        = new Alphabet();
@@ -28,6 +27,12 @@ public class Automata {
 		transitions     = new UniqueList<>();
 		acceptStates    = new UniqueList<>();
 		transitionTable = new TransitionTable(states, alphabet);
+		initial         = null;
+	}
+
+	public Automata(Alphabet alphabet) {
+		this();
+		this.alphabet = alphabet;
 	}
 
 	public void addState(State state) {
@@ -76,6 +81,33 @@ public class Automata {
 
 	public boolean run(Collection<Character> string) {
 		throw new NotImplementedException();
+	}
+
+	public Automata minimise() {
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Automata)) {
+			return false;
+		}
+		// 2 Automata are equal if their alphabet, states, transitions, accept states, and initial state are equal.
+		// The initial state may not have been set yet and as such may still be null, therefore the Object.equals() method is being used.
+		Automata automata = (Automata) o;
+		return alphabet.equals(automata.alphabet) &&
+				states.equals(automata.states) &&
+				transitions.equals(automata.transitions) &&
+				Objects.equals(initial, automata.initial) &&
+				acceptStates.equals(automata.acceptStates);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(alphabet, states, transitions, initial);
 	}
 
 	@Override
