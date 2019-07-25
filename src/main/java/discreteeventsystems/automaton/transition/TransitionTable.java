@@ -3,9 +3,10 @@ package discreteeventsystems.automaton.transition;
 import static discreteeventsystems.utils.StringUtils.center;
 import static discreteeventsystems.utils.StringUtils.centerWithCharacter;
 
-import discreteeventsystems.UniqueList;
 import discreteeventsystems.Alphabet;
+import discreteeventsystems.UniqueList;
 import discreteeventsystems.automaton.State;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,10 +24,8 @@ public class TransitionTable {
 
 	private void buildTable() {
 		table = new State[states.size()][alphabet.size()];
-		for (int i = 0; i < table.length; i++) {
-			for (int j = 0; j < table[i].length; j++) {
-				table[i][j] = null;
-			}
+		for (State[] row : table) {
+			Arrays.fill(row, null);
 		}
 	}
 
