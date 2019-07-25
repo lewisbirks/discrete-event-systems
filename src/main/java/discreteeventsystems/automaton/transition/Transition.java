@@ -7,7 +7,7 @@ import lombok.Setter;
 
 public class Transition {
 
-	@NonNull @Setter State from;
+	@NonNull @Setter State     from;
 	@NonNull @Setter State     to;
 	@NonNull @Setter Character character;
 

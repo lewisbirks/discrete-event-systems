@@ -4,11 +4,13 @@ public class StringUtils {
 
 	/**
 	 * Replaces all occurrences of [ with {, and ] with }
+	 *
 	 * @param s string to alter
+	 *
 	 * @return altered string
 	 */
 	public static String squareToBraces(String s) {
-		return s.replaceAll("[\\[]","{").replaceAll("[]]", "}");
+		return s.replaceAll("[\\[]", "{").replaceAll("[]]", "}");
 	}
 
 	public static String centerWithCharacter(String s, int length, char c) {
